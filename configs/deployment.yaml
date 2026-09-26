@@ -1,0 +1,91 @@
+# Crop_AI Deployment Configuration
+# Architecture Note: Shifted to Classification-First Pipeline.
+# YOLO-specific detection models are deprecated/decommissioned for ESP32-S3 deployment.
+
+service:
+  name: "Crop_AI_Soybean_Diagnostic_Service"
+  version: "2.0.0-classification"
+  target_crop: "Soybean"
+  architecture_mode: "classification_first"
+  target_hardware: "ESP32-S3 / Edge"
+  device: "cuda:0" # or "cpu"
+
+models:
+  cnn_classifier:
+    name: "EfficientNet-B0 Health Classifier"
+    path: "models/optimized/best_model.pt"
+    type: "classification"
+    architecture: "EfficientNet-B0"
+    authoritative_stage: "Stage 8 Optimization"
+    input_size: 224
+    num_classes: 9
+    classes:
+      - "Bacterial_Blight"
+      - "Cercospora_Leaf_Blight"
+      - "Frogeye_Leaf_Spot"
+      - "Healthy"
+      - "Mosaic"
+      - "Pest_Damage"
+      - "Septoria_Brown_Spot"
+      - "Soybean_Rust"
+      - "Sudden_Death_Syndrome"
+    normalization:
+      mean: [0.485, 0.456, 0.406]
+      std: [0.229, 0.224, 0.225]
+
+  disease_detector:
+    name: "YOLO11m Disease Region Detector"
+    path: "models/yolo11m_disease_v3_100/best.pt"
+    type: "object_detection"
+    architecture: "YOLO11m"
+    authoritative_stage: "Stage 8D Clean V3 100-Epoch"
+    input_size: 640
+    conf_threshold: 0.10
+    iou_threshold: 0.45
+    num_classes: 4
+    classes:
+      0: "Charcol rot"
+      1: "Healthy"
+      2: "RAB"
+      3: "Target Leaf Spot"
+
+  nutrient_detector:
+    name: "YOLO11m Nutrient Deficiency Detector"
+    path: "models/yolo11m_nutrient_optimized/best.pt"
+    type: "object_detection"
+    architecture: "YOLO11m"
+    authoritative_stage: "Stage 8B Controlled Optimization"
+    input_size: 640
+    conf_threshold: 0.25
+    iou_threshold: 0.45
+    num_classes: 5
+    classes:
+      0: "Calcium_deficiency"
+      1: "Magnesium_deficiency"
+      2: "N_deficiency"
+      3: "Phosphorus_Deficiency"
+      4: "Potassium_deficiency"
+
+  leaf_detector:
+    name: "YOLO11m Soybean Leaf Detector"
+    path: "models/yolo11m/best.pt"
+    type: "object_detection"
+    architecture: "YOLO11m"
+    authoritative_stage: "SoyCotton Leaf Pretraining"
+    input_size: 640
+    conf_threshold: 0.25
+    iou_threshold: 0.45
+    num_classes: 1
+    classes:
+      0: "soybean_leaf"
+
+inference_policy:
+  enforce_strict_leaf_check: false
+  preserve_model_disagreements: true
+  spreadness_allowed: false # Strict Zero-Spreadness Rule
+  prohibited_fields:
+    - "spreadness"
+    - "spread_percentage"
+    - "disease_area"
+    - "severity"
+    - "affected_area"

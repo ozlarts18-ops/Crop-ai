@@ -1,0 +1,39 @@
+{
+    "project_name": "Crop_AI",
+    "domain": "Agricultural Artificial Intelligence & Smart Farming",
+    "crop_details": {
+        "plant_name": "Soybean",
+        "scientific_name": "Glycine max",
+        "taxonomy_family": "Fabaceae",
+        "economic_importance": "Critical oilseed and protein crop globally, highly vulnerable to fungal, bacterial, and viral foliar diseases."
+    },
+    "system_objectives": [
+        "Plant name identification: Soybean",
+        "Scientific name identification: Glycine max",
+        "Health status discrimination (Healthy vs. Diseased)",
+        "Pathogen/condition classification among normalized classes",
+        "Disease confidence estimation",
+        "Disease localization (bounding boxes when annotations are available)",
+        "Affected area quantification (pixels and spread percentage where segmentation is available)",
+        "Severity classification based on lesion coverage"
+    ],
+    "target_disease_taxonomy": {
+        "0": "Healthy",
+        "1": "Bacterial_Blight",
+        "2": "Cercospora_Leaf_Blight",
+        "3": "Downy_Mildew",
+        "4": "Frogeye_Leaf_Spot",
+        "5": "Soybean_Rust",
+        "6": "Target_Spot",
+        "7": "Potassium_Deficiency",
+        "8": "Mosaic",
+        "9": "Septoria_Brown_Spot",
+        "10": "Sudden_Death_Syndrome",
+        "11": "Pest_Damage"
+    },
+    "operational_constraints": [
+        "Pure software machine learning solution (no edge hardware/IoT dependencies)",
+        "Strict integrity preservation: no fabricated annotations or bounding boxes",
+        "Robust deduplication and data leakage prevention using hashing across train/val/test splits"
+    ]
+}

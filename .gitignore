@@ -1,0 +1,53 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+.env
+
+# Large model weights / checkpoints
+*.pt
+*.pth
+*.onnx
+weights/
+runs/
+models/*.pt
+experiments/
+
+# Datasets and archives
+data/
+raw/
+ZIP/
+*.zip
+*.tar.gz
+outputs/
+logs/
+
+# IDE / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db

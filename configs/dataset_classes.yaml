@@ -1,0 +1,84 @@
+# Crop_AI Dataset Class Mappings
+# Generated during Final Dataset Audit & Preparation
+# Preserving semantic boundaries across independent task models
+
+disease:
+  source_primary: "Multi-Class Soybean Leaf Disease Dataset Healthy a"
+  source_secondary: "MH-SoyaHealthVision (Leaf Subset)"
+  task_type: "multi_class_image_classification"
+  classes:
+    - "Bacterial_Blight"
+    - "Cercospora_Leaf_Blight"
+    - "Frogeye_Leaf_Spot"
+    - "Healthy"
+    - "Mosaic"
+    - "Pest_Damage"
+    - "Septoria_Brown_Spot"
+    - "Soybean_Rust"
+    - "Sudden_Death_Syndrome"
+  num_classes: 9
+  notes:
+    - "Frogeye_Leaf_Spot normalized from MH-SoyaHealthVision folder 'Soyabean_Frog_Leaf_Eye'"
+    - "Septoria_Brown_Spot normalized from MH-SoyaHealthVision folder 'Soyabean_Spectoria_Brown_Spot'"
+    - "Pest_Damage normalized from MH-SoyaHealthVision folder 'Caterpillar and Semilooper Pest Attack'"
+    - "Healthy normalized from Multi-Class 'Healthy' and MH 'Healthy_Soyabean'"
+    - "Soybean_Rust normalized from Multi-Class 'Rust' and MH 'Soyabean_Rust'"
+
+nutrient:
+  source_primary: "potassium_deficiency"
+  task_type: "single_class_deficiency_classification"
+  available_classes:
+    - "Potassium_Deficiency"
+  num_available_classes: 1
+  unavailable_classes:
+    - "Nitrogen_Deficiency: NOT AVAILABLE"
+    - "Phosphorus_Deficiency: NOT AVAILABLE"
+    - "Calcium_Deficiency: NOT AVAILABLE"
+    - "Magnesium_Deficiency: NOT AVAILABLE"
+  notes:
+    - "Dataset contains 1,034 images strictly of Potassium Deficiency."
+    - "No Nitrogen or Phosphorus deficiency images exist in the raw dataset collection."
+    - "Do not display or predict N or P deficiency."
+
+growth:
+  source_primary: "A soybean and weed image dataset collected using FarmBot"
+  task_type: "temporal_growth_monitoring"
+  observation_sequence: "chronological_daily_canopy_monitoring"
+  available_days:
+    - "Day 1"
+    - "Day 2"
+    - "Day 3"
+    - "Day 4"
+    - "Day 5"
+    - "Day 6"
+    - "Day 7"
+    - "Day 8"
+    - "Day 9"
+    - "Day 10"
+    - "Day 11"
+    - "Day 12"
+    - "Day 13"
+    - "Day 14"
+    - "Day 15"
+    - "Day 16"
+    - "Day 17"
+    - "Day 18"
+    - "Day 19"
+    - "Day 20"
+  num_observation_days: 20
+  formal_stages: "NOT AVAILABLE"
+  notes:
+    - "Images represent chronological observations of soybean growth across 20 days in a FarmBot plot."
+    - "Formal vegetative/reproductive stage labels (VE, V1, V2, V3, R1, R2, etc.) are NOT present in the dataset."
+    - "Model must be framed as growth progression / monitoring, NOT formal stage classification."
+
+crop_verification:
+  source_primary: "SoyCotton"
+  task_type: "crop_identification_and_verification"
+  classes:
+    - "soy"
+    - "cotton"
+  num_classes: 2
+  notes:
+    - "Contains 640 images with 12,411 instance annotations."
+    - "Used to verify that user-uploaded imagery contains authentic soybean foliage and filter out cotton or non-soybean plants."

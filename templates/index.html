@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DESOYA — Soybean AI Health System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <h1 class="app-title">DESOYA</h1>
+            <p class="app-subtitle">Soybean AI Health System</p>
+        </header>
+
+        <main class="app-main">
+            <!-- Upload Card -->
+            <section class="card upload-card">
+                <div class="upload-control-group">
+                    <label for="imageInput" class="btn-choose">Choose Soybean Image</label>
+                    <input type="file" id="imageInput" name="image" accept="image/jpeg,image/png">
+                    <span id="fileName" class="file-name-display">No image chosen</span>
+                </div>
+
+                <!-- Preview Area -->
+                <div id="previewContainer" class="preview-container" style="display: none;">
+                    <img id="imagePreview" class="image-preview" src="" alt="Soybean Image Preview">
+                </div>
+
+                <div class="action-group">
+                    <button id="scanBtn" class="btn-primary" disabled>Analyze Image</button>
+                </div>
+
+                <div id="statusMessage" class="status-message" style="display: none;"></div>
+            </section>
+
+            <!-- Results Section Card -->
+            <section id="resultCard" class="card result-card" style="display: none;">
+                <!-- 1. Soybean Crop Verification Banner / Section -->
+                <div class="verification-banner">
+                    <div class="section-heading" style="margin-bottom: 8px;">SOYBEAN VERIFICATION</div>
+                    <div class="verification-details">
+                        <div class="v-item">
+                            <span class="detail-label">Status:</span>
+                            <span id="cropStatusVal" class="detail-val-strong">Soybean</span>
+                        </div>
+                        <div class="v-item">
+                            <span class="detail-label">Verification:</span>
+                            <span id="cropVerifiedVal" class="detail-val-strong highlight-green">✓ Verified</span>
+                        </div>
+                        <div class="v-item">
+                            <span class="detail-label">Confidence:</span>
+                            <span id="cropConfidenceVal" class="detail-val-strong">—</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2, 3, 4: Findings Grid (Disease, Potassium, Plant & Weed) -->
+                <div class="findings-grid">
+                    <!-- Disease Detection -->
+                    <div class="finding-box">
+                        <h2 class="section-heading">DISEASE DETECTION</h2>
+                        <div class="detail-row">
+                            <span class="detail-label">Status:</span>
+                            <span id="diseaseStatusVal" class="detail-val-strong">—</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Disease:</span>
+                            <span id="diseaseTypeVal" class="detail-val-strong">—</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Confidence:</span>
+                            <span id="diseaseConfidenceVal" class="detail-val-strong">—</span>
+                        </div>
+                    </div>
+
+                    <!-- Potassium Status -->
+                    <div class="finding-box">
+                        <h2 class="section-heading">POTASSIUM STATUS</h2>
+                        <div class="detail-row">
+                            <span class="detail-label">Status:</span>
+                            <span id="potassiumStatusVal" class="detail-val-strong">—</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Confidence:</span>
+                            <span id="potassiumConfidenceVal" class="detail-val-strong">—</span>
+                        </div>
+                        <p class="notice-note">This test detects exclusively Normal Status vs. Potassium Deficiency.</p>
+                    </div>
+
+                    <!-- Plant & Weed Detection -->
+                    <div class="finding-box">
+                        <h2 class="section-heading">PLANT &amp; WEED DETECTION</h2>
+                        <div class="detail-row">
+                            <span class="detail-label">Plants Detected:</span>
+                            <span id="plantCountVal" class="detail-val-strong count-badge plant-count">0</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Weeds Detected:</span>
+                            <span id="weedCountVal" class="detail-val-strong count-badge weed-count">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="divider">
+
+                <!-- 5. AI Detection Result (Annotated Image) -->
+                <div class="section-block">
+                    <h2 class="section-heading">AI DETECTION RESULT</h2>
+                    <div class="visualization-container">
+                        <img id="annotatedImage" class="annotated-image" src="" alt="AI Detection Result">
+                    </div>
+                    <div id="legendContainer" class="legend-container">
+                        <span class="legend-item"><span class="color-dot dot-leaf"></span> Plant Detection</span>
+                        <span class="legend-item"><span class="color-dot dot-disease"></span> Weed Detection</span>
+                    </div>
+                    <p id="noDetectionsNote" class="no-detections-note" style="display: none;">No localized plant or
+                        weed detections.</p>
+                </div>
+
+                <hr class="divider">
+
+                <!-- 6. Diagnostic Summary Cards -->
+                <div class="section-block">
+                    <h2 class="section-heading">DIAGNOSTIC SUMMARY</h2>
+                    <div class="model-results-grid">
+                        <!-- Crop Verification -->
+                        <div class="model-card">
+                            <h3 class="model-title">CROP VERIFICATION</h3>
+                            <div class="model-detail"><strong>Status:</strong> <span id="mCropStatus">Soybean</span>
+                            </div>
+                            <div class="model-detail"><strong>Confidence:</strong> <span id="mCropConf">—</span></div>
+                        </div>
+
+                        <!-- Disease Detection -->
+                        <div class="model-card">
+                            <h3 class="model-title">DISEASE DIAGNOSIS</h3>
+                            <div class="model-detail"><strong>Diagnosis:</strong> <span id="mDiseaseStatus">—</span>
+                            </div>
+                            <div class="model-detail"><strong>Confidence:</strong> <span id="mDiseaseConf">—</span>
+                            </div>
+                        </div>
+
+                        <!-- Potassium Status -->
+                        <div class="model-card">
+                            <h3 class="model-title">POTASSIUM STATUS</h3>
+                            <div class="model-detail"><strong>Status:</strong> <span id="mPotassiumStatus">—</span>
+                            </div>
+                            <div class="model-detail"><strong>Confidence:</strong> <span id="mPotassiumConf">—</span>
+                            </div>
+                        </div>
+
+                        <!-- Plant & Weed -->
+                        <div class="model-card">
+                            <h3 class="model-title">CANOPY SCAN</h3>
+                            <div class="model-detail"><strong>Plants:</strong> <span id="mPlantCount">0</span></div>
+                            <div class="model-detail"><strong>Weeds:</strong> <span id="mWeedCount">0</span></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="app-footer">
+            <p>DESOYA &copy; Soybean AI Health System</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+
+</html>
