@@ -30,7 +30,6 @@ wheels/
 # Large model weights / checkpoints
 *.pt
 *.pth
-*.onnx
 weights/
 runs/
 models/*.pt
