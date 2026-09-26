@@ -1,0 +1,11 @@
+{
+  "model_architecture": "YOLO11m",
+  "dataset": "Soybean Crop Disease v10",
+  "initial_epochs": 20,
+  "extended_epochs": 80,
+  "total_epochs": 100,
+  "best_weights": "c:/Users/oswal/Music/Crop_AI/models/yolo11m_disease_test/best.pt",
+  "last_weights": "c:/Users/oswal/Music/Crop_AI/models/yolo11m_disease_test/last.pt",
+  "total_checkpoints": 20,
+  "completed_at": "2026-09-19T22:54:03.931856"
+}

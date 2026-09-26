@@ -1,0 +1,15 @@
+experiment_id: EXP_01_B0_Baseline
+hyperparameters:
+  augmentation: standard
+  batch_size: 64
+  learning_rate: 0.001
+  scheduler: CosineAnnealingLR
+  weight_decay: 0.0001
+model_spec:
+  checkpoint_source: C:\Users\oswal\Music\Crop_AI\models\cnn\best.pt
+  size: 16.14 MB (4.02M params)
+selected_architecture: efficientnet_b0
+validation_metrics:
+  accuracy: 0.9088
+  macro_f1: 0.8812
+  weighted_f1: 0.9082

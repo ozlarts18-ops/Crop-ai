@@ -1,0 +1,14 @@
+batch: 16
+data: c:/Users/oswal/Music/Crop_AI/data/yolo_soycotton/data.yaml
+device: 0
+epochs: 100
+exist_ok: true
+imgsz: 640
+model: yolo11m.pt
+name: train
+project: c:/Users/oswal/Music/Crop_AI/outputs/yolo11m_runs
+save_period: 5
+seed: 42
+task: detect
+verbose: true
+workers: 8

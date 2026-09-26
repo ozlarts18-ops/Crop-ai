@@ -1,0 +1,95 @@
+{
+  "model": "EfficientNetV2-S",
+  "task": "Soybean_vs_Non_Soybean_Crop_Verification",
+  "selected_threshold": 0.35,
+  "validation_metric_used": "Validation F1 with Soybean Recall priority",
+  "class_mapping": {
+    "0": "Soybean",
+    "1": "Non_Soybean"
+  },
+  "timestamp": "2026-09-20 18:01:51",
+  "random_seed": 42,
+  "candidate_threshold_evaluations": [
+    {
+      "threshold": 0.3,
+      "accuracy": 0.9883720930232558,
+      "precision": 0.9772727272727273,
+      "recall": 1.0,
+      "f1": 0.9885057471264368,
+      "soybean_recall": 1.0,
+      "non_soybean_recall": 0.9767441860465116
+    },
+    {
+      "threshold": 0.35,
+      "accuracy": 0.9941860465116279,
+      "precision": 0.9885057471264368,
+      "recall": 1.0,
+      "f1": 0.9942196531791907,
+      "soybean_recall": 1.0,
+      "non_soybean_recall": 0.9883720930232558
+    },
+    {
+      "threshold": 0.4,
+      "accuracy": 0.9941860465116279,
+      "precision": 0.9885057471264368,
+      "recall": 1.0,
+      "f1": 0.9942196531791907,
+      "soybean_recall": 1.0,
+      "non_soybean_recall": 0.9883720930232558
+    },
+    {
+      "threshold": 0.45,
+      "accuracy": 0.9941860465116279,
+      "precision": 0.9885057471264368,
+      "recall": 1.0,
+      "f1": 0.9942196531791907,
+      "soybean_recall": 1.0,
+      "non_soybean_recall": 0.9883720930232558
+    },
+    {
+      "threshold": 0.5,
+      "accuracy": 0.9941860465116279,
+      "precision": 0.9885057471264368,
+      "recall": 1.0,
+      "f1": 0.9942196531791907,
+      "soybean_recall": 1.0,
+      "non_soybean_recall": 0.9883720930232558
+    },
+    {
+      "threshold": 0.55,
+      "accuracy": 0.9941860465116279,
+      "precision": 0.9885057471264368,
+      "recall": 1.0,
+      "f1": 0.9942196531791907,
+      "soybean_recall": 1.0,
+      "non_soybean_recall": 0.9883720930232558
+    },
+    {
+      "threshold": 0.6,
+      "accuracy": 0.9941860465116279,
+      "precision": 0.9885057471264368,
+      "recall": 1.0,
+      "f1": 0.9942196531791907,
+      "soybean_recall": 1.0,
+      "non_soybean_recall": 0.9883720930232558
+    },
+    {
+      "threshold": 0.65,
+      "accuracy": 0.9941860465116279,
+      "precision": 0.9885057471264368,
+      "recall": 1.0,
+      "f1": 0.9942196531791907,
+      "soybean_recall": 1.0,
+      "non_soybean_recall": 0.9883720930232558
+    },
+    {
+      "threshold": 0.7,
+      "accuracy": 0.9941860465116279,
+      "precision": 0.9885057471264368,
+      "recall": 1.0,
+      "f1": 0.9942196531791907,
+      "soybean_recall": 1.0,
+      "non_soybean_recall": 0.9883720930232558
+    }
+  ]
+}

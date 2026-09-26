@@ -1,0 +1,14 @@
+{
+  "model_architecture": "YOLO11m",
+  "task": "detect",
+  "classes": {
+    "0": "soybean_leaf"
+  },
+  "epochs_completed": 100,
+  "training_time_hours": null,
+  "best_weights_path": "c:/Users/oswal/Music/Crop_AI/models/yolo11m/best.pt",
+  "last_weights_path": "c:/Users/oswal/Music/Crop_AI/models/yolo11m/last.pt",
+  "checkpoints_directory": "c:/Users/oswal/Music/Crop_AI/models/yolo11m/checkpoints",
+  "total_checkpoints_created": 20,
+  "training_completed_at": "2026-09-19T21:39:54.082949"
+}

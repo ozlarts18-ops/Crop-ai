@@ -1,0 +1,14 @@
+batch: 16
+data: c:\Users\oswal\Music\Crop_AI\data\yolo_disease\data.yaml
+device: 0
+epochs: 20
+exist_ok: true
+imgsz: 640
+model: yolo11m.pt
+name: train
+project: c:/Users/oswal/Music/Crop_AI/models/yolo11m_disease_test/runs
+save_period: 5
+seed: 42
+task: detect
+verbose: true
+workers: 8
